@@ -1,0 +1,29 @@
+{
+  "name": "init-setting",
+  "version": "1.0.0",
+  "description": "prettier, eslint, husky",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache .",
+    "postinstall": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanted-fe-6/test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanted-fe-6/test/issues"
+  },
+  "homepage": "https://github.com/wanted-fe-6/test#readme",
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
+  }
+}
