@@ -40,7 +40,7 @@ const onKeyDown = () => {};
 let isAvailable = false;
 ```
 
-생성자는 대문자 카멜 케이스를 사용한다.
+생성자는 파스칼 케이스를 사용한다.
 
 ```js
 class ConstructorName {
