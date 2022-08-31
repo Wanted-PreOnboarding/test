@@ -14,6 +14,8 @@ space와 tab을 섞어서 사용하지 않는다. 공백 문자는 2개로 통�
 
 변수, 함수에는 카멜 케이스(Camel case)을 사용한다.
 
+> [ESLint - camelcase](https://eslint.org/docs/latest/rules/camelcase)
+
 ```js
 // 숫자, 문자, 불린
 let dog;
@@ -64,11 +66,15 @@ SYMBOLIC_CONSTANTS;
 
 값이 변하지 않는 변수는 const를, 값이 변하는 변수는 let을 사용하여 선언한다. var는 절대로 사용하지 않도록 한다.
 
+> [ESLint - no-var](https://eslint.org/docs/latest/rules/no-var)
+
 const를 let 보다 위에 선언한다.
 
-const와 let은 사용 시점에 선언 및 할당을 한다.
+> [ESLint - prefer-const](https://eslint.org/docs/latest/rules/prefer-const)
 
-const와 let으로 선언한 변수는 블록 스코프이므로 호이스팅(hoisting) 되지 않는다.
+`const`와 `let`은 사용 시점에 선언 및 할당을 한다.
+
+`const`와 `let`으로 선언한 변수는 블록 스코프이므로 호이스팅(hoisting) 되지 않는다.
 
 ```js
 function foo() {
@@ -90,19 +96,18 @@ function foo() {
 외부 모듈과 내부 모듈을 구분하여 사용한다.
 
 ```js
-const lodash = require('lodash');
-const $ = require(jquery);
-const handlebars = require('handlebars');
-const d3 = require('d3');
+import { AxiosResponse } from 'axios';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-const pluginFactory from '../../factories/pluginFactory';
-const predicate from '../../helpers/predicate';
-const raphaelRenderUtil from '../../plugins/raphaelRenderUtil';
+import { setAccessToken } from 'utils/tokenProvider';
+import api from 'api/interceptor';
 ```
 
 ## 배열과 객체
 
 배열과 객체는 반드시 리터럴로 선언한다.
+
+> [ESLINT - no-new-object](https://eslint.org/docs/latest/rules/no-new-object)
 
 ```js
 // Bad
@@ -120,8 +125,8 @@ const arr = [1, 2, 3, 4, 5];
 // Good
 const emptyObj = {};
 const obj = {
-  pro1: "val1",
-  pro2: "val2",
+  pro1: 'val1',
+  pro2: 'val2',
 };
 ```
 
@@ -144,6 +149,8 @@ const itemsCopy = [...items];
 
 배열의 시작 괄호 안에 요소가 줄 바꿈으로 시작되었다면 끝 괄호 이전에도 일관된 줄 바꿈 해야한다.
 
+> [ESLint - array-bracket-newline](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
+
 ```js
 // Bad
 var a = [1];
@@ -155,6 +162,8 @@ var d = [1];
 
 배열의 요소 중 하나라도 줄 바꿈이 있다면 배열 안의 요소는 일관되게 모두 줄 바꿈을 해주어야 한다.
 
+> [ESLint - array-element-newline](https://eslint.org/docs/latest/rules/array-element-newline)
+
 ```js
 const a = [1, 2, 3];
 const b = [1, 2, 3];
@@ -162,20 +171,24 @@ const b = [1, 2, 3];
 
 객체의 프로퍼티가 1개인 경우에만 한 줄 정의를 허용하며, 2개 이상일 경우에는 개행을 강제한다.
 
+> [ESLint - object-property-newline](https://eslint.org/docs/latest/rules/object-property-newline)
+
 ```js
 // Bad - 개행
-const obj = { foo: "a", bar: "b" };
+const obj = { foo: 'a', bar: 'b' };
 
 // Good
-const obj = { foo: "a" };
+const obj = { foo: 'a' };
 
 // Good
 const obj = {
-  foo: "a",
+  foo: 'a',
 };
 ```
 
 객체의 메서드 표현 시 축약 메소드 표기를 사용한다.
+
+> [ESLint - object-shorthanded](https://eslint.org/docs/latest/rules/object-shorthand)
 
 ```js
 // Bad
@@ -198,6 +211,8 @@ const atom = {
 ```
 
 메서드 문법 사용 시 메서드 사이에 개행을 추가한다.
+
+> [ESLint - lines-between-class-members](https://eslint.org/docs/latest/rules/lines-between-class-members)
 
 ```js
 // Bad
@@ -226,9 +241,11 @@ class MyClass {
 
 함수 생성자를 사용하여 선언하지 않는다.
 
+> [ESLint - no-new-func](https://eslint.org/docs/latest/rules/no-new-func)
+
 ```js
 // Bad - 함수 생성자 사용
-const doSomething = new Function("param1", "param2", "return param1 + param2;");
+const doSomething = new Function('param1', 'param2', 'return param1 + param2;');
 
 // Good - 함수 선언식 사용
 function doSomething(param1, param2) {
@@ -269,6 +286,8 @@ const sumedValue = sum(1, 2);
 
 함수 표현식 대신 화살표 함수를 사용한다.
 
+> [ESLint - perfer-arrow-callback](http://eslint.org/docs/rules/prefer-arrow-callback)
+
 ```js
 // Bad
 [1, 2, 3].map(function (x) {
@@ -277,7 +296,7 @@ const sumedValue = sum(1, 2);
 });
 
 // Good
-[1, 2, 3].map((x) => {
+[1, 2, 3].map(x => {
   const y = x + 1;
   return x * y;
 });
@@ -285,15 +304,17 @@ const sumedValue = sum(1, 2);
 
 화살표 함수의 파라미터가 하나이면 괄호를 생략한다.
 
+> [ESLin - arrow-parens](https://ui.toast.com/fe-guide/ko_CODING-CONVENTION)
+
 ```js
 // Bad
-[1, 2, 3].map((x) => {
+[1, 2, 3].map(x => {
   const y = x + 1;
   return x * y;
 });
 
 // Good
-[1, 2, 3].map((x) => x * x);
+[1, 2, 3].map(x => x * x);
 
 // Good
 [1, 2, 3].reduce((y, x) => x + y);
@@ -305,38 +326,20 @@ const sumedValue = sum(1, 2);
 
 ```js
 // Bad
-[1, 2, 3].map((number) => {
+[1, 2, 3].map(number => {
   const nextNumber = number + 1;
   `A string containing the ${nextNumber}.`;
 });
 
 // Good - 암시적 return을 사용
-[1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
-```
-
-암시적 반환을 사용할 경우 함수 본문 전에 개행을 하지 않는다.
-
-```js
-// Bad
-(foo) => bar;
-
-(foo) => bar;
-
-(foo) => (bar) => baz;
-
-// Good
-(foo) => bar;
-
-(foo) => bar;
-
-(foo) => (bar) => baz;
-
-(foo) => bar();
+[1, 2, 3].map(number => `A string containing the ${number + 1}.`);
 ```
 
 ### Destructuring
 
 오브젝트의 프로퍼티에 접근할 때는 Destructuring을 이용한다.
+
+> [ESLint - prefer-destructuring](https://eslint.org/docs/latest/rules/prefer-destructuring)
 
 ```js
 // Bad
@@ -371,15 +374,17 @@ function getFullName({ firstName, lastName }) {
 
 변수 등을 조합해서 문자열을 생성하는 경우 템플릿 문자열을 이용한다.
 
+> [ESLint - prefer-template](https://eslint.org/docs/latest/rules/prefer-template)
+
 ```js
 // Bad
 function sayHi(name) {
-  return "How are you, " + name + "?";
+  return 'How are you, ' + name + '?';
 }
 
 // Bad
 function sayHi(name) {
-  return ["How are you, ", name, "?"].join();
+  return ['How are you, ', name, '?'].join();
 }
 
 // Bad - 일반적인 경우, 홑따옴표를 사용
@@ -415,6 +420,8 @@ import * as AirbnbStyleGuide from './AirbnbStyleGuide';
 
 한 줄짜리 블록일 경우라도 {}를 생략하지 않으며 명확히 줄 바꿈 하여 사용한다.
 
+> [ESLint - brace-style](https://eslint.org/docs/latest/rules/brace-style) > [ESLint - curly](https://eslint.org/docs/latest/rules/curly)
+
 ```js
 // Bad
 if(condition) doSomething();
@@ -444,6 +451,8 @@ if (condition) {
 
 키워드와 조건문 사이에 빈칸을 사용한다.
 
+> [ESLint - keyword-spacing](https://eslint.org/docs/latest/rules/keyword-spacing)
+
 ```js
 // Bad
 var i = 0;
@@ -460,7 +469,60 @@ for (; i < 100; i += 1) {
 
 ## 조건 확인하기
 
-삼중 등호 연산자인 ===, !==만 사용한다.
+삼중 등호 연산자인 `===`, `!==`만 사용한다.
+
+> [ESLint - eqeqeq](https://eslint.org/docs/latest/rules/eqeqeq)
+
+## 반환하기
+
+함수 내에서 반환은 한 번만 한다.
+
+특정 값을 반환해야 하는 경우, 함수 맨 마지막에서 한 번만 반환한다. 단, 예외로 빠져나가는 경우는 제외한다.
+
+```js
+// Bad
+function getResult() {
+  ...
+  if (condition) {
+    ...
+    return someDataInTrue;
+  }
+  ...
+  return someDataInFalse;
+}
+
+// Allow
+function foo(isValid) {
+  ...
+  // 예외처리로 바로 빠져나감
+  if (!isValid) {
+    return;
+  }
+  ...
+
+  return someDataInTrue;
+}
+
+// Good
+function getResult() {
+  let resultData;
+  ...
+
+  if (condition) {
+    ...
+    resultData = someDataInTrue;
+  } else {
+    ...
+    resultData = someDataInFalse;
+  }
+
+  return resultData;
+}
+```
+
+`return`문 바로 위는 한 칸 비워 놓는다.
+
+> [ESLint - padding-line-between-statements](https://eslint.org/docs/latest/rules/padding-line-between-statements)
 
 ## 주석
 
