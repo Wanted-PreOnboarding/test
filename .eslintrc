@@ -6,11 +6,30 @@
     "es6": true
   },
   "rules": {
-    "no-var": "error", // var 금지
-    "no-multiple-empty-lines": "error", // 여러 줄 공백 금지
-    "no-console": ["warn", { "allow": ["warn", "error", "info"] }], // error => warn
-    "eqeqeq": "error", // 일치 연산자 사용 필수
-    "dot-notation": "error", // 가능하다면 dot notation 사용
-    "no-unused-vars": "error" // 사용하지 않는 변수 금지
+    "no-var": "error",
+    "no-multiple-empty-lines": "error",
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "eqeqeq": "error",
+    "dot-notation": "error",
+    "no-unused-vars": "error",
+    /// 추가 rules
+    "camelcase": "error",
+    "prefer-const": "error",
+    "no-new-object": "error",
+    "array-bracket-newline": "error",
+    "array-element-newline": "error",
+    "object-property-newline": "error",
+    "object-shorthand": "error",
+    "lines-between-class-members": "error",
+    "no-new-func": "error",
+    "prefer-arrow-callback": "error",
+    "arrow-parens": "error",
+    "prefer-destructuring": "error",
+    "prefer-template": "error",
+    "brace-style": "error",
+    "curly": "error",
+    "keyword-spacing": "error",
+    "padding-line-between-statements": "error"
+    ///
   }
 }
